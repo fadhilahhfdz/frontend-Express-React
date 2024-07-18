@@ -1,5 +1,5 @@
 // import hook react
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 
 //import hook useNavigate from react router dom
 import { useNavigate } from "react-router-dom";

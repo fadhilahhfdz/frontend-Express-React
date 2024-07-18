@@ -1,5 +1,5 @@
 // import useContext
-import React, { useContext } from "react";
+import { useContext } from "react";
 
 // import context
 import { AuthContext } from "../context/AuthContext";
@@ -41,7 +41,7 @@ export default function AppRoutes() {
             <Route path="/admin/users/create" element={isAuthenticated ? <UsersCreate /> : <Navigate to="/login" replace />}  />
 
             {/* route "/admin/users/edit" */}
-            <Route path="/admin/users/edit:id" element={isAuthenticated ? <UsersEdit /> : <Navigate to="/login" replace />}  />
+            <Route path="/admin/users/edit/:id" element={isAuthenticated ? <UsersEdit /> : <Navigate to="/login" replace />}  />
         </Routes>
     )
 }

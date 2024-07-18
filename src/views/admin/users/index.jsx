@@ -35,6 +35,29 @@ export default function UsersIndex() {
     fetchDataUsers();
   }, []);
 
+  // define method deleteUser
+  const deleteUser = async (id) => {
+    // get token from cookies
+    const token = Cookies.get("token");
+
+    if (token) {
+      // set authorization header with token
+      Api.defaults.headers.common["Authorization"] = token;
+
+      try {
+        // fetch data from api with axios
+        await Api.delete(`api/admin/users/${id}`);
+
+        // call method fetchdataUsers
+        fetchDataUsers();
+      } catch (error) {
+        console.error("There was an error deleting the user!", error);
+      }
+    } else {
+      console.error("Token is not available");
+    }
+  };
+
   return (
     <div className="container mt-5 mb-5">
       <div className="row">
@@ -54,7 +77,7 @@ export default function UsersIndex() {
             </div>
             <div className="card-body">
               <table className="table table-bordered">
-                <thead className="bg-dark text-white">
+                <thead className="bg-primary text-white">
                   <tr>
                     <th scope="col">Nama Lengkap</th>
                     <th scope="col">Alamat Email</th>
@@ -72,11 +95,11 @@ export default function UsersIndex() {
                         <td className="text-center">
                           <Link
                             to={`/admin/users/edit/${user.id}`}
-                            className="btn btn-sm btn-primary rounded-sm shadow border-0 me-2"
+                            className="btn btn-sm btn-warning text-white rounded-sm shadow border-0 me-2"
                           >
                             Edit
                           </Link>
-                          <button className="btn btn-sm btn-danger rounded-sm shadow border-0">
+                          <button onClick={() => deleteUser(user.id)} className="btn btn-sm btn-danger rounded-sm shadow border-0">
                             Delete
                           </button>
                         </td>

@@ -8,7 +8,7 @@ export default function App() {
 
   return (
     <div>
-      <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+      <nav className="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
         <div className="container">
           <Link to="/" className="navbar-brand">
             Home
